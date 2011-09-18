@@ -1,7 +1,7 @@
 function love.load()
 
   world = love.physics.newWorld(0, 0, 650, 650) --create a world for the bodies to exist in with width and height of 650
-  world:setGravity(0, 700) --the x component of the gravity will be 0, and the y component of the gravity will be 700
+  world:setGravity(0, 2) --the x component of the gravity will be 0, and the y component of the gravity will be 700
   world:setMeter(64) --the height of a meter in this world will be 64px
 
   objects = {} -- table to hold all our physical objects
@@ -15,7 +15,7 @@ function love.load()
   --let's create a ball
   objects.ball = {}
 	-- 15 mass renders offscreen?
-  objects.ball.body = love.physics.newBody(world, 650/2, 650/2, 0, 0) --place the body in the center of the world, with a mass of 15
+  objects.ball.body = love.physics.newBody(world, 650/2, 650/2, 15, 0) --place the body in the center of the world, with a mass of 15
   objects.ball.shape = love.physics.newCircleShape(objects.ball.body, 0, 0, 20) --the ball's shape has no offset from it's body and has a radius of 20
 
   --initial graphics setup
@@ -28,9 +28,9 @@ function love.update(dt)
  
   --here we are going to create some keyboard events
   if love.keyboard.isDown("right") then --press the right arrow key to push the ball to the right
-    objects.ball.body:applyForce(400, 0)
+    objects.ball.body:applyForce(40, 0)
   elseif love.keyboard.isDown("left") then --press the left arrow key to push the ball to the left
-    objects.ball.body:applyForce(-400, 0)
+    objects.ball.body:applyForce(-40, 0)
   elseif love.keyboard.isDown("up") then --press the up arrow key to set the ball in the air
     objects.ball.body:setY(650/2)
   end
